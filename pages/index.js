@@ -1,4 +1,9 @@
+import { NavbarComponent } from "@/components";
+
 export default function Home() {
-  return <main>
-  </main>;
+  return (
+    <div>
+      <NavbarComponent />
+    </div>
+  );
 }
