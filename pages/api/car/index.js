@@ -15,11 +15,10 @@ export default async function Handler(req, res) {
   }
 
   if (method === "POST") {
-    console.log("ffdsfdssd")
     if (!body) {
       return res.status(400).json({ error: "Envie os dados do carro" });
     }
     await createCar(body);
-    return res.status(201)
+    return res.status(201).send()
   }
 }

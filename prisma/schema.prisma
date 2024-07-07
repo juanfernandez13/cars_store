@@ -22,7 +22,7 @@ model Car {
   color     String
   city      String
   km        Int
-  plate     String
+  plate     String @unique
   createdAt DateTime @default(now())
   views Int @default(0)
   images String[]
