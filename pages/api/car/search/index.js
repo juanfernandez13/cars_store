@@ -1,17 +1,16 @@
-import { createCar, getAllCars, getCarByName as getCarByModel, getTopCars } from "@/libs/controllers/cars";
+import { getTopCars } from "@/libs/controllers/cars";
 import { verifyAllowedMethods } from "@/libs/utils/allowedMethods";
 
 export default async function Handler(req, res) {
-  const { method, query } = req;
-  const { model } = query;
+  const { method } = req;
   const allowedMethods = ["GET"];
   const error = verifyAllowedMethods(method, allowedMethods);
   if (error) {
     return res.status(error.status).json(error);
   }
 
-  if (method === "GET") {
-    const cars = await getCarByModel(model);
+  if(method === "GET" ){
+    const cars = await getTopCars()
     return res.status(200).json({ data: cars });
   }
 }

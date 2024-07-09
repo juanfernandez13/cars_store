@@ -18,7 +18,8 @@ export default async function Handler(req, res) {
     if (!body) {
       return res.status(400).json({ error: "Envie os dados do carro" });
     }
-    await createCar(body);
-    return res.status(201).send()
+    const newCar = await createCar(body);
+        
+    return res.status(201).json({data: newCar})
   }
 }
