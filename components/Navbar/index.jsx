@@ -6,7 +6,7 @@ const NavbarComponent = () => {
     <div>
       <AppBar
         className={
-          "py-6 px-4 bg-gradient-to-l from-orange-400 to-orange-800 flex justify-between flex-row"
+          "py-6 px-12 bg-gradient-to-l from-orange-400 to-orange-800 flex justify-between flex-row"
         }
       >
         <a href="/"><h1 className={"text-2xl font-bold"}>Cars store</h1></a>
