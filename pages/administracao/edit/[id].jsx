@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { Button, TextField } from "@mui/material";
 
 import { InputFile, NavbarComponent } from "@/components";
+import { baseURL } from "@/libs/constants";
 
-const NewCar = () => {
+const NewCar = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
@@ -22,8 +23,21 @@ const NewCar = () => {
   });
   const [step, setStep] = useState(0);
 
+  useEffect(() => {
+    getCarData();
+  }, []);
+
   const nextStep = () => setStep(1);
   const backStep = () => setStep(0);
+
+  const getCarData = async () => {
+    const response = await fetch(baseURL + "/api/car/" + id);
+    const data = await response.json();
+    if (data.data.error && data.data.error.code) {
+      return;
+    }
+    setDataCar(data.data);
+  };
 
   const removeImg = async (index) => {
     setLoading(true);
@@ -31,6 +45,16 @@ const NewCar = () => {
     const newSelectedFiles = selectedFiles.filter((item, i) => i !== index);
     setPreviewImages(newPreviewImages);
     setSelectedFiles(newSelectedFiles);
+    setLoading(false);
+  };
+
+  const removeImgBD = async (nameImg) => {
+    setLoading(true);
+    const newListImg = dataCar.images.filter((item) => item !== nameImg);
+    setDataCar({ ...dataCar, images: newListImg });
+    await fetch(baseURL + "/api/images/" + nameImg, {
+      method: "remove",
+    });
     setLoading(false);
   };
 
@@ -42,14 +66,16 @@ const NewCar = () => {
       ...files.map((file) => URL.createObjectURL(file)),
     ]);
   };
+
   const router = useRouter();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = new FormData();
     const sendCarData = dataCar;
+
     selectedFiles.forEach((file, index) => {
-      const newName = Date.now() + index + "-" + file.name;
+      const newName = Date.now() + "-" + file.name;
       data.append(`file${index}`, file, newName);
       sendCarData.images.push(newName);
     });
@@ -59,8 +85,8 @@ const NewCar = () => {
         method: "POST",
         body: data,
       });
-      await fetch("/api/car", {
-        method: "POST",
+      await fetch("/api/car/" + id, {
+        method: "PUT",
         body: JSON.stringify(sendCarData),
         headers: {
           "Content-Type": "application/json",
@@ -114,6 +140,25 @@ const NewCar = () => {
               <div className="flex w-full items-center justify-evenly flex-wrap gap-8 px-8">
                 <InputFile onChange={handleImageChange} />
                 <div className="transition-all grid grid-cols-[repeat(2,minmax(200px,200px))] md:grid-cols-[repeat(3,minmax(250px,250px))] gap-1 lg:gap-4 overflow-scroll no-scrollbar">
+                  {dataCar.images.map((item, index) => (
+                    <div
+                      key={index + "img"}
+                      className="flex flex-col justify-center"
+                    >
+                      <img
+                        src={baseURL + "/upload/" + item}
+                        alt="Pré-visualização"
+                        className="object-cover w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] border-2 border-slate-300"
+                      />
+                      <Button
+                        onClick={() => removeImgBD(item)}
+                        disabled={loading}
+                      >
+                        Remover
+                      </Button>
+                    </div>
+                  ))}
+
                   {previewImages.map((item, index) => (
                     <div key={index} className="flex justify-center flex-col">
                       <img
@@ -123,8 +168,7 @@ const NewCar = () => {
                       />
                       <Button
                         onClick={() => removeImg(index)}
-                        disabled={loading}
-                      >
+                        disabled={loading}>
                         Remover
                       </Button>
                     </div>
@@ -220,5 +264,15 @@ const NewCar = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.query;
+
+  return {
+    props: {
+      id,
+    },
+  };
+}
 
 export default NewCar;

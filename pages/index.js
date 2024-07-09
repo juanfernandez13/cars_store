@@ -26,7 +26,7 @@ export default function Home() {
       {topCars && (
         <div className="pt-28 px-8 ">
           <h2 className="mb-6 font-bold text-2xl">Carros em destaque</h2>
-          <div className=" h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-16">
+          <div className=" h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-16">
             {topCars.map((item, index) => (
               <CardComponent key={index} car={item} />
             ))}

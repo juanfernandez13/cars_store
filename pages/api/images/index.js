@@ -1,4 +1,4 @@
-import {deleteImage, saveImage} from "@/libs/controllers/images";
+import { saveImage} from "@/libs/controllers/images";
 import path from "path";
 import fs from "fs/promises";
 
@@ -9,13 +9,14 @@ export const config = {
 };
 
 export default async function Handler(req, res) {
-  const { method } = req;
+  const { method, body } = req;
 
   try {
     await fs.readdir(path.join(process.cwd() + "/public", "/upload"));
   } catch (error) {
     await fs.mkdir(path.join(process.cwd() + "/public", "/upload"));
   }
+
   if(method === "POST"){
     try {
       await saveImage(req);
@@ -23,10 +24,5 @@ export default async function Handler(req, res) {
     } catch (error) {
       return res.status(404).json({ message: "Erro ao salvar imagem" });
     }
-  }
-
-  if(method === "DELETE"){
-    await deleteImage('')
-    return res.status(204).send('')
   }
 }

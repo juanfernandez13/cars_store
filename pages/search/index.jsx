@@ -32,7 +32,7 @@ const getCars = async () => {
     <div className="w-full min-h-screen h-full">
       <SearchBarComponent value={searchValue} onChange={updateSearchValue}/>
       {
-        cars && <div className="px-4 h-full w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid justify-items-center	gap-8 py-4">
+        cars && <div className="px-4 h-full w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid justify-items-center	gap-8 py-4">
         {cars.map((item, index) => (<CardComponent key={index} car={item}/>))}
       </div>
       }
