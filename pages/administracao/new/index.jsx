@@ -1,8 +1,9 @@
-import { InputFile, NavbarComponent } from "@/components";
-import { ArrowLeft, ArrowRight } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useRouter } from 'next/router'
+import { ArrowLeft, ArrowRight } from "@mui/icons-material";
+import { Button, TextField } from "@mui/material";
+
+import { InputFile, NavbarComponent } from "@/components";
 
 
 const NewCar = () => {
@@ -122,6 +123,7 @@ const NewCar = () => {
                   <TextField
                     label="Modelo"
                     className="w-full md:w-2/5"
+                    value={dataCar.model}
                     onChange={(e) => {
                       setDataCar({ ...dataCar, model: e.target.value });
                     }}
@@ -129,6 +131,7 @@ const NewCar = () => {
                   <TextField
                     label="Marca do veiculo"
                     className="w-full md:w-2/5"
+                    value={dataCar.automaker}
                     onChange={(e) => {
                       setDataCar({ ...dataCar, automaker: e.target.value });
                     }}
@@ -138,6 +141,7 @@ const NewCar = () => {
                   <TextField
                     label="Preço"
                     type="number"
+                    value={dataCar.price}
                     className="w-full md:w-1/3"
                     onChange={(e) => {
                       setDataCar({ ...dataCar, price: e.target.value });
@@ -146,6 +150,7 @@ const NewCar = () => {
                   <TextField
                     label="Ano de fabricação"
                     className="w-full md:w-1/5"
+                    value={dataCar.year}
                     onChange={(e) => {
                       setDataCar({ ...dataCar, year: e.target.value });
                     }}
@@ -153,6 +158,7 @@ const NewCar = () => {
                   <TextField
                     label="Quilometragem"
                     className="w-full md:w-1/4"
+                    value={dataCar.km}
                     onChange={(e) => {
                       setDataCar({ ...dataCar, km: e.target.value });
                     }}
@@ -161,6 +167,7 @@ const NewCar = () => {
                 <div className="w-full flex flex-wrap gap-4 justify-center">
                   <TextField
                     label="Cor do veiculo"
+                    value={dataCar.color}
                     className="w-full md:w-1/5"
                     onChange={(e) => {
                       setDataCar({ ...dataCar, color: e.target.value });
@@ -168,6 +175,7 @@ const NewCar = () => {
                   />
                   <TextField
                     label="Placa do veiculo"
+                    value={dataCar.plate}
                     className="w-full md:w-1/3"
                     onChange={(e) => {
                       setDataCar({ ...dataCar, plate: e.target.value });
@@ -175,6 +183,7 @@ const NewCar = () => {
                   />
                   <TextField
                     label="Cidade"
+                    value={dataCar.city}
                     className="w-full md:w-1/4"
                     onChange={(e) => {
                       setDataCar({ ...dataCar, city: e.target.value });

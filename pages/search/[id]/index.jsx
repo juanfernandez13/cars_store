@@ -1,6 +1,9 @@
-import { NavbarComponent } from "@/components";
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+
+import { NavbarComponent } from "@/components";
+
+import { baseURL } from "@/libs/constants";
 
 export default function CarDetails({ id }) {
   const [car, setCar] = useState();
@@ -11,13 +14,14 @@ export default function CarDetails({ id }) {
   }, []);
 
   const searchCarById = async () => {
-    const baseUrl = "http://localhost:3000/api/car/";
-    const response = await fetch(baseUrl + id);
+    const pathApiCar = "/api/car/";
+    const response = await fetch(baseURL + pathApiCar + id);
     const data = await response.json();
-    console.log(data);
+
     if (data.data.error && data.data.error.code) {
       return;
     }
+    
     setCar(data.data);
   };
 

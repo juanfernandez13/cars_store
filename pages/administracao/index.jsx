@@ -1,5 +1,8 @@
-import { ButtonNewCarComponent, CardComponent, SearchBarComponent } from "@/components";
 import { useEffect, useState } from "react";
+
+import { ButtonNewCarComponent, CardComponent, SearchBarComponent } from "@/components";
+
+import { baseURL } from "@/libs/constants";
 
 export default function SearchView() {
   const [loading, setLoading] = useState(false)
@@ -16,9 +19,9 @@ const updateSearchValue = (text) => {
 }
 
 const getCars = async () => {
-  const baseUrl = 'http://localhost:3000/api/car/';
+  const pathApiCar = '/api/car/';
   const path = searchValue === ''? "" : `search/${searchValue}`
-  const response = await fetch(baseUrl+path)
+  const response = await fetch(baseURL+pathApiCar+path)
   const data = await response.json()
   setCars(data.data)
 }
