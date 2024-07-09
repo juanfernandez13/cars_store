@@ -5,8 +5,6 @@ import { deleteImage } from "@/libs/controllers/images";
 export default async function Handler(req, res) {
   const { method, query } = req;
   const { path } = query;
-  console.log("path")
-  console.log(path)
 
   try {
     await fs.readdir(path.join(process.cwd() + "/public", "/upload"));
