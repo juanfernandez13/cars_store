@@ -10,7 +10,7 @@ const NavbarComponent = () => {
           "py-6 px-12 bg-gradient-to-l from-orange-400 to-orange-800 flex justify-between flex-row"
         }
       >
-        <Link href="/"><h1 className={"text-2xl font-bold"}>Cars store</h1></a>
+        <Link href="/"><h1 className={"text-2xl font-bold"}>Cars store</h1></Link>
         <div>
           <Button className="lg:mr-4">
             <Link href={'/search'} className="gap-4 flex flex-row">
