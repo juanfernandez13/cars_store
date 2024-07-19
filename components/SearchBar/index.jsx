@@ -1,5 +1,6 @@
 import { People, Search } from "@mui/icons-material";
 import { Button, InputAdornment, TextField } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
 const SearchBarComponent = (props) => {
@@ -8,11 +9,11 @@ const SearchBarComponent = (props) => {
     <div>
       <div className="w-full bg-gradient-to-l from-orange-400 to-orange-800 flex justify-between py-4 px-12 flex-wrap">
         <div className="w-full flex flex-row justify-between items-center">
-          <a href="/">
+          <Link href="/">
             <h1 className={"text-2xl font-bold text-white sm:text-nowrap"}>
               Cars store
             </h1>
-          </a>
+          </Link>
           <div className="w-full flex justify-center hidden sm:flex">
             <TextField
               value={value}
@@ -33,20 +34,20 @@ const SearchBarComponent = (props) => {
           </div>
           <div className="flex flex-row">
             <Button className="lg:mr-4">
-              <a href={"/search"} className="gap-4 flex flex-row">
+              <Link href={"/search"} className="gap-4 flex flex-row">
                 <Search sx={{ color: "#ffffff" }} />
                 <span className="hidden lg:flex text-white font-medium font-4xl">
                   Buscar
                 </span>
-              </a>
+              </Link>
             </Button>
             <Button className="cursor-pointer">
-              <a href={"/administracao"} className="gap-4 flex flex-row">
+              <Link href={"/administracao"} className="gap-4 flex flex-row">
                 <People sx={{ color: "#ffffff" }} />
                 <span className="hidden lg:flex text-white font-medium font-4xl">
                   Administração
                 </span>
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

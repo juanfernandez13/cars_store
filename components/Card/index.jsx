@@ -1,4 +1,6 @@
 import { Button } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 const CardComponent = (props) => {
@@ -12,8 +14,8 @@ const CardComponent = (props) => {
 
   return (
     <div className="w-4/5 lg:w-full h-auto rounded-3xl border-slate-400 border-2 pl-4 bg-slate-200 mx-2">
-      <a href={`/search/${car.id}`}>
-        <img
+      <Link href={`/search/${car.id}`}>
+        <Image
           src={"/upload/" + car.images[0]}
           className="h-1/2 w-full object-cover rounded-tr-3xl rounded-tl-md -mr-2 md:min-h-[300px] lg:min-h-[220px]"
         />
@@ -31,7 +33,7 @@ const CardComponent = (props) => {
             Anúncio visto {car.views} vezes
           </p>
         </div>
-      </a>
+      </Link>
           {admin && (
             <div className="flex justify-center gap-4 mt-2 z-10">
               <Button className="text-white bg-red-500  font-semibold" onClick={() => deleteCar(car)} disabled={loading}>

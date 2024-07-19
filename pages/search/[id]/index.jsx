@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { NavbarComponent } from "@/components";
 
 import { baseURL } from "@/libs/constants";
+import Image from "next/image";
 
 export default function CarDetails({ id }) {
   const [car, setCar] = useState();
@@ -41,7 +42,7 @@ export default function CarDetails({ id }) {
         <div className="flex flex-col lg:flex-row w-full py-6 px-4 gap-6">
           <div className="w-full lg:w-3/5 flex lg:justify-start justify-center flex-col">
             <div className="bg-orange-100 h-[350px] w-full lg:w-4/6 flex justify-center">
-              <img
+              <Image
                 src={"http://localhost:3000/upload/" + car.images[indexImg]}
                 alt=""
                 className="h-full object-contain"
@@ -50,7 +51,7 @@ export default function CarDetails({ id }) {
             <div className="flex justify-between w-full lg:w-4/6">
               {car.images.map((item, index) => (
                 <Button key={index} onClick={() => setIndexImg(index)}>
-                  <img
+                  <Image
                     src={"http://localhost:3000/upload/" + car.images[index]}
                     alt=""
                     className="h-[120px] object-contain"

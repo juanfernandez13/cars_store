@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import { Button, TextField } from "@mui/material";
 
 import { InputFile, NavbarComponent } from "@/components";
+import Image from "next/image";
 
 const NewCar = () => {
   const [loading, setLoading] = useState(false);
@@ -116,7 +117,7 @@ const NewCar = () => {
                 <div className="transition-all grid grid-cols-[repeat(2,minmax(200px,200px))] md:grid-cols-[repeat(3,minmax(250px,250px))] gap-1 lg:gap-4 overflow-scroll no-scrollbar">
                   {previewImages.map((item, index) => (
                     <div key={index} className="flex justify-center flex-col">
-                      <img
+                      <Image
                         src={item}
                         alt="Pré-visualização"
                         className="object-cover w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] border-2 border-slate-300"

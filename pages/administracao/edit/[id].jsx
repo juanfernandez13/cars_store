@@ -5,6 +5,7 @@ import { Button, TextField } from "@mui/material";
 
 import { InputFile, NavbarComponent } from "@/components";
 import { baseURL } from "@/libs/constants";
+import Image from "next/image";
 
 const NewCar = ({ id }) => {
   const [loading, setLoading] = useState(false);
@@ -145,7 +146,7 @@ const NewCar = ({ id }) => {
                       key={index + "img"}
                       className="flex flex-col justify-center"
                     >
-                      <img
+                      <Image
                         src={baseURL + "/upload/" + item}
                         alt="Pré-visualização"
                         className="object-cover w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] border-2 border-slate-300"
@@ -161,7 +162,7 @@ const NewCar = ({ id }) => {
 
                   {previewImages.map((item, index) => (
                     <div key={index} className="flex justify-center flex-col">
-                      <img
+                      <Image
                         src={item}
                         alt="Pré-visualização"
                         className="object-cover w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] border-2 border-slate-300"
